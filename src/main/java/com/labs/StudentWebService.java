@@ -4,16 +4,12 @@ import com.labs.client.WebServiceClient;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import javax.jws.WebResult;
 import javax.jws.WebService;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import com.labs.errors.CRUDServiceCreateStudentEmpryFieldFault;
-import com.labs.errors.EmptyFieldException;
+import com.labs.errors.*;
 
 @WebService(serviceName = "CRUDService")
 public class StudentWebService {
@@ -28,7 +24,7 @@ public class StudentWebService {
                                        @WebParam(name = "studentSurname") String surname,
                                        @WebParam(name = "studentAge") String age,
                                        @WebParam(name = "studentId") String studentId,
-                                       @WebParam(name = "studentMark") String mark) throws EmptyFieldException {
+                                       @WebParam(name = "studentMark") String mark) throws EmptyFieldException, CastToIntException, FieldValueException {
 
         String status = "0";
         if (name != null && !name.trim().isEmpty() &&
@@ -36,8 +32,6 @@ public class StudentWebService {
                 age != null && !age.trim().isEmpty() &&
                 studentId != null && !studentId.trim().isEmpty() &&
                 mark != null && !mark.trim().isEmpty()) {
-
-                System.out.println("Везде есть значения");
 
                 try {
                     int ageInt = Integer.parseInt(age.trim());
@@ -47,27 +41,32 @@ public class StudentWebService {
                             mark.equals("удовлетворительно") ||
                             mark.equals("хорошо") ||
                             mark.equals("отлично")) {
-                        System.out.println("mark имеет допустимое значение");
 
                         PostgreSQLDAO dao = new PostgreSQLDAO();
                         status = dao.createStudent(name, surname, ageInt, studentIdInt, mark);
 
                     } else {
-                        System.out.println("mark не имеет допустимое значение. Выбрасываем исключение.");
+                        FieldValueFault fault = FieldValueFault.defaultInstance();
+                        throw new FieldValueException("Error was occurred in class: " + StudentWebService.class.getName() +
+                                ", method - createStudent(). \n Field 'mark' has not one of " +
+                                "the required values: 'неудовлетворительно', 'удовлетворительно', 'хорошо', 'отлично'.",
+                                fault);
                     }
 
                 } catch (NumberFormatException ex) {
-                    System.out.println("Невозможно привести к int значения age и studentId");
-                    Logger.getLogger(WebServiceClient.class.getName()).log(Level.SEVERE, null, ex);
+                    CastToIntFault fault = CastToIntFault.defaultInstance();
+                    throw new CastToIntException("Error was occurred in class: " + StudentWebService.class.getName() +
+                            ", method - createStudent(). \n We get 'NumberFormatException': " + ex +
+                            ", when trying convert studentAge and studentID to integers.", fault);
                 }
 
 
         } else {
-            CRUDServiceCreateStudentEmpryFieldFault fault = CRUDServiceCreateStudentEmpryFieldFault.defaultInstance();
-            throw new EmptyFieldException("There are empty strings in createStudent() method arguments", fault);
+            EmptyFieldFault fault = EmptyFieldFault.defaultInstance();
+            throw new EmptyFieldException("Error was occurred in class " + StudentWebService.class.getName() +
+                    ", method createStudent().", fault);
         }
 
-        System.out.println(status);
         return status;
     }
 

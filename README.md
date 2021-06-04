@@ -86,7 +86,25 @@
 
 ![image-20210604205649479](README.assets/image-20210604205649479.png)
 
+В класс StudentWebService в метод createStudent() мы добавили проверку:
 
+```java
+if (name != null && !name.trim().isEmpty() &&
+                surname != null && !surname.trim().isEmpty() &&
+                age != null && !age.trim().isEmpty() &&
+                studentId != null && !studentId.trim().isEmpty() &&
+                mark != null && !mark.trim().isEmpty()) {
+    ...
+} else {
+    CRUDServiceCreateStudentEmpryFieldFault fault = CRUDServiceCreateStudentEmpryFieldFault.defaultInstance();
+    throw new EmptyFieldException("There are empty strings in createStudent() method arguments", fault);
+}
+
+```
+
+В соответствии с этим, если мы обнаружили, что какой-либо из параметров содержит пустую строку или строку из пробелов, то мы выбрасываем исключение `EmptyFieldException` с соответствующим сообщением и объектом `faultBean = "com.labs.errors.CRUDServiceCreateStudentEmptyFieldFault"`, заданным в аннотации `@WebFault`. 
+
+Подобным образом мы будем обрабатывать все исключительные ситуации, поэтому далее ограничимся лишь обозначение того, какие исключительные ситуации необходимо обработать.
 
 
 
