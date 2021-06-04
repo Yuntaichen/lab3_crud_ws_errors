@@ -205,7 +205,7 @@ public class WebServiceClient {
 
 
     private static void deleteStudentRowById(CRUDService studentService) {
-        String status = "Bad";
+        String status = "0";
 
         // Консольный ввод аргументов
         Scanner scanner = new Scanner(System.in);
@@ -216,11 +216,10 @@ public class WebServiceClient {
         try {
             int rowId = Integer.parseInt(rowIDString.trim());
             status = studentService.getStudentWebServicePort().deleteStudent(rowId);
-            if (status.equals("1")) status = "Good";
-            System.out.println("Status: " + status);
         } catch (NumberFormatException ex) {
             System.out.println("Incorrect rowId value! Input just one integer.");
         }
+        System.out.println("Status: " + status);
     }
 
 
