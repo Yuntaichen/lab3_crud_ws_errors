@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="rowId" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="rowId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,21 +31,29 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class DeleteStudent {
 
-    protected int rowId;
+    protected String rowId;
 
     /**
      * Gets the value of the rowId property.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getRowId() {
+    public String getRowId() {
         return rowId;
     }
 
     /**
      * Sets the value of the rowId property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setRowId(int value) {
+    public void setRowId(String value) {
         this.rowId = value;
     }
 

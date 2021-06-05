@@ -24,10 +24,14 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _RowIsNotExistsException_QNAME = new QName("http://labs.com/", "RowIsNotExistsException");
     private final static QName _DeleteStudentResponse_QNAME = new QName("http://labs.com/", "deleteStudentResponse");
     private final static QName _UpdateStudentResponse_QNAME = new QName("http://labs.com/", "updateStudentResponse");
     private final static QName _UpdateStudent_QNAME = new QName("http://labs.com/", "updateStudent");
+    private final static QName _CastToIntException_QNAME = new QName("http://labs.com/", "CastToIntException");
+    private final static QName _FieldValueException_QNAME = new QName("http://labs.com/", "FieldValueException");
     private final static QName _CreateStudentResponse_QNAME = new QName("http://labs.com/", "createStudentResponse");
+    private final static QName _EmptyFieldException_QNAME = new QName("http://labs.com/", "EmptyFieldException");
     private final static QName _GetStudentsByFields_QNAME = new QName("http://labs.com/", "getStudentsByFields");
     private final static QName _DeleteStudent_QNAME = new QName("http://labs.com/", "deleteStudent");
     private final static QName _CreateStudent_QNAME = new QName("http://labs.com/", "createStudent");
@@ -41,11 +45,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CastToIntFault }
+     * 
+     */
+    public CastToIntFault createCastToIntFault() {
+        return new CastToIntFault();
+    }
+
+    /**
+     * Create an instance of {@link FieldValueFault }
+     * 
+     */
+    public FieldValueFault createFieldValueFault() {
+        return new FieldValueFault();
+    }
+
+    /**
      * Create an instance of {@link CreateStudentResponse }
      * 
      */
     public CreateStudentResponse createCreateStudentResponse() {
         return new CreateStudentResponse();
+    }
+
+    /**
+     * Create an instance of {@link RowIsNotExistsFault }
+     * 
+     */
+    public RowIsNotExistsFault createRowIsNotExistsFault() {
+        return new RowIsNotExistsFault();
     }
 
     /**
@@ -97,6 +125,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link EmptyFieldFault }
+     * 
+     */
+    public EmptyFieldFault createEmptyFieldFault() {
+        return new EmptyFieldFault();
+    }
+
+    /**
      * Create an instance of {@link GetStudentsByFields }
      * 
      */
@@ -110,6 +146,15 @@ public class ObjectFactory {
      */
     public Student createStudent() {
         return new Student();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RowIsNotExistsFault }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://labs.com/", name = "RowIsNotExistsException")
+    public JAXBElement<RowIsNotExistsFault> createRowIsNotExistsException(RowIsNotExistsFault value) {
+        return new JAXBElement<RowIsNotExistsFault>(_RowIsNotExistsException_QNAME, RowIsNotExistsFault.class, null, value);
     }
 
     /**
@@ -140,12 +185,39 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CastToIntFault }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://labs.com/", name = "CastToIntException")
+    public JAXBElement<CastToIntFault> createCastToIntException(CastToIntFault value) {
+        return new JAXBElement<CastToIntFault>(_CastToIntException_QNAME, CastToIntFault.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FieldValueFault }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://labs.com/", name = "FieldValueException")
+    public JAXBElement<FieldValueFault> createFieldValueException(FieldValueFault value) {
+        return new JAXBElement<FieldValueFault>(_FieldValueException_QNAME, FieldValueFault.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateStudentResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://labs.com/", name = "createStudentResponse")
     public JAXBElement<CreateStudentResponse> createCreateStudentResponse(CreateStudentResponse value) {
         return new JAXBElement<CreateStudentResponse>(_CreateStudentResponse_QNAME, CreateStudentResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EmptyFieldFault }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://labs.com/", name = "EmptyFieldException")
+    public JAXBElement<EmptyFieldFault> createEmptyFieldException(EmptyFieldFault value) {
+        return new JAXBElement<EmptyFieldFault>(_EmptyFieldException_QNAME, EmptyFieldFault.class, null, value);
     }
 
     /**

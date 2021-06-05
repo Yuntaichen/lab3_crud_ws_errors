@@ -3,21 +3,20 @@ package com.labs.client.generated;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for deleteStudentResponse complex type.
+ * <p>Java class for emptyFieldFault complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="deleteStudentResponse">
+ * &lt;complexType name="emptyFieldFault">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="message" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,36 +26,35 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "deleteStudentResponse", propOrder = {
-    "_return"
+@XmlType(name = "emptyFieldFault", propOrder = {
+    "message"
 })
-public class DeleteStudentResponse {
+public class EmptyFieldFault {
 
-    @XmlElement(name = "return")
-    protected String _return;
+    protected String message;
 
     /**
-     * Gets the value of the return property.
+     * Gets the value of the message property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getReturn() {
-        return _return;
+    public String getMessage() {
+        return message;
     }
 
     /**
-     * Sets the value of the return property.
+     * Sets the value of the message property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setReturn(String value) {
-        this._return = value;
+    public void setMessage(String value) {
+        this.message = value;
     }
 
 }
